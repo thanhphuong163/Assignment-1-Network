@@ -1,0 +1,1 @@
+Folder for analytic application implementation
