@@ -1,5 +1,6 @@
 package Analytic;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -58,12 +59,16 @@ public class GPS {
     }
 
     public JSONObject toJson() {
-        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("DD-MM-YYYY hh:mm:ss");
         JSONObject json = new JSONObject();
-        json.put("ID:", this.ID);
-        json.put("Long:", this.Longitude);
-        json.put("Lat:", this.Latitude);
-        json.put("Time:", df.format(this.time));
+        try {
+            json.put("ID", this.ID);
+            json.put("Long", this.Longitude);
+            json.put("Lat", this.Latitude);
+            json.put("Time", df.format(this.time));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return json;
     }
 }

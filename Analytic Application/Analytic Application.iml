@@ -10,7 +10,18 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/json-lib-2.4-jdk15.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/java-json.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/java-json.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/mongodb-driver-core-3.5.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +30,16 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/json-rpc-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/mongodb-driver-3.5.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../Programming/Library for Java/mongo-java-driver-3.5.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
