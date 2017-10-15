@@ -10,13 +10,15 @@ import java.net.Socket;
 
 import static java.lang.System.out;
 
-
 public class test {
     public static void main(String[] args) throws InterruptedException {
+        // Connect to Database
         MongoClient mongo = new MongoClient("localhost",27017);
-        MongoDatabase database = mongo.getDatabase("dataGPS");
-
+        MongoDatabase database = mongo.getDatabase("dataBase");
+        MongoCollection collection = database.getCollection("collection");
         QueueRequests queueRequests = new QueueRequests();
+        out.println("Connected to Database successfully");
+
         int numberOfThread = 0;
         try {
             ServerSocket listener = new ServerSocket();
@@ -28,7 +30,7 @@ public class test {
                 out.println("Push request "+ client.getRemoteSocketAddress().toString() +" into Queue.");
                 if (numberOfThread < 10) {
                     numberOfThread++;
-                    ServiceThread process = new ServiceThread(queueRequests.pop(), numberOfThread);
+                    ServiceThread process = new ServiceThread(queueRequests.pop(), numberOfThread, collection);
                     process.start();
                     out.println("Processing request of " + client.getRemoteSocketAddress().toString() + ".");
                 }

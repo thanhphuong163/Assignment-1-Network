@@ -1,5 +1,6 @@
 package Analytic;
 
+import com.mongodb.client.MongoCollection;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,9 +14,11 @@ import java.util.Date;
 public class ServiceThread extends Thread{
     private Socket clientSocket;
     private int numberOfClient;
-    public ServiceThread(Socket client, int n) {
+    private MongoCollection collection;
+    public ServiceThread(Socket client, int n, MongoCollection collection) {
         this.clientSocket = client;
         this.numberOfClient = n;
+        this.collection = collection;
     }
     @Override
     public void run() {
@@ -24,7 +27,6 @@ public class ServiceThread extends Thread{
             // Receive request from client through socket
             BufferedReader is = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             JSONObject json = new JSONObject(new String(is.readLine()));
-            String IP = clientSocket.getRemoteSocketAddress().toString();
             String ID = json.getString("ID");
             double Long = json.getDouble("Long");
             double Lat = json.getDouble("Lat");
@@ -32,14 +34,14 @@ public class ServiceThread extends Thread{
             GPS pos = new GPS(ID,Long,Lat,time);
 
             // Query data from Database with info request
-            Query query = new Query(pos);
+            Query query = new Query(pos, collection);
             ArrayList<GPS> data = query.getData();
 
             // Processing
             Computing process = new Computing(data);
             String w = process.processing();
 
-            // Responsing
+            // Response
             BufferedWriter os = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             os.write(w);
             os.newLine();

@@ -1,6 +1,7 @@
 package Analytic;
 
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import static java.lang.System.out;
@@ -10,7 +11,7 @@ public class Database {
         MongoClient mongo = new MongoClient("localhost",27017);
         MongoDatabase database = mongo.getDatabase("dataBase");
         out.println("Connected to database successfully.");
-        database.createCollection("collection");
-        out.println("created collection successfully.");
+        MongoCollection collection = database.getCollection("collection");
+        out.println("Got collection successfully.");
     }
 }
