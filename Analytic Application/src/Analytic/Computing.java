@@ -2,6 +2,8 @@ package Analytic;
 
 import java.util.ArrayList;
 
+import static java.lang.System.out;
+
 public class Computing {
     private ArrayList<GPS> data;
     private static final Integer EarthR = 6371000; // meters
@@ -30,25 +32,38 @@ public class Computing {
 
         // Calculate time
         Long Dtime = Math.abs(pos2.getTime().getTime() - pos1.getTime().getTime()) / 1000;
-
-        return c * EarthR / Dtime;
+//        out.println("Distance = " + c*EarthR);
+//        out.println("Dtime = " + Dtime);
+        if (Dtime == 0) {
+            return c;
+        }
+        else {
+            return c * EarthR / Dtime;
+        }
     }
 
 
     public String processing() {
-        String result = "";
+        String result;
         Dict items = new Dict();
         for (int i = 0; i < this.data.size(); i++) {
             items.push(this.data.get(i));
         }
+        //out.println(items.getKey(0));
+        //out.println(items.getValue(0));
         for (int i = 0; i < items.size(); i++) {
             Double sumVelo = 0.;
             for (int j = 0; j < items.getListGPS(i).size() - 1; j++) {
                 sumVelo += this.velocity(items.getListGPS(i).get(j), items.getListGPS(i).get(j + 1));
             }
-            Double v = sumVelo / (items.getListGPS(i).size() - 1);
+//            out.println(sumVelo);
+            Double v = sumVelo / items.getListGPS(i).size();
+//            out.println(v);
             items.setAvgVelocities(i, v);
         }
+//        out.println("There are " + items.size() + " vehicles");
+//        out.println(items.mean());
+//        out.println(items.variance());
         if (items.mean() <= maxMean && items.variance() <= maxVar) {
             result = "Jam";
         }

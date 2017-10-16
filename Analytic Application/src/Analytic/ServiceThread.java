@@ -15,7 +15,7 @@ import static java.lang.System.out;
 
 public class ServiceThread extends Thread{
     private Socket clientSocket;
-    private int numberOfClient;
+    public int numberOfClient;
     private MongoCollection collection;
     public ServiceThread(Socket client, int n, MongoCollection collection) {
         this.clientSocket = client;
@@ -35,18 +35,20 @@ public class ServiceThread extends Thread{
             Date time = df.parse(json.getString("Time"));
             GPS pos = new GPS(ID,Long,Lat,time);
 
-//            // Query data from Database with info request
-//            Query query = new Query(pos, collection);
-//            ArrayList<GPS> data = query.getData();
-//
-//            // Processing
-//            Computing process = new Computing(data);
-//            String w = process.processing();
-            String w = "Hello";
-            out.println("ID: " + pos.getID());
-            out.println("Long: " + pos.getLongitude());
-            out.println("Lat: " + pos.getLatitude());
-            out.println("Time: " + pos.getTime().toString());
+            // Query data from Database with info request
+            Query query = new Query(pos, collection);
+            ArrayList<GPS> data = query.getData();
+//            out.println("Queried data.");
+
+            // Processing
+            Computing process = new Computing(data);
+            String w = process.processing();
+//            out.println("Computed data. " + w);
+//            String w = "Hello";
+//            out.println("ID: " + pos.getID());
+//            out.println("Long: " + pos.getLongitude());
+//            out.println("Lat: " + pos.getLatitude());
+//            out.println("Time: " + pos.getTime().toString());
             // Response
             BufferedWriter os = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             os.write(w);
@@ -61,6 +63,6 @@ public class ServiceThread extends Thread{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        this.numberOfClient--;
+        out.println("Completed processing for request " + clientSocket.getRemoteSocketAddress());
     }
 }

@@ -2,6 +2,8 @@ package Analytic;
 
 import java.util.ArrayList;
 
+import static java.lang.System.out;
+
 public class Dict {
     private ArrayList<String> keys;
     private ArrayList<ArrayList<GPS>> values;
@@ -22,6 +24,18 @@ public class Dict {
         valueList.add(value);
         this.values.add(valueList);
         this.avgVelocities.add(0.);
+    }
+
+    public String getKey(int index) {
+        return this.keys.get(index);
+    }
+
+    public String getValue(int index) {
+       String values = "";
+       for (int i = 0; i < this.values.get(index).size(); i++) {
+           values += this.values.get(index).get(i).toJson().toString() + " ; ";
+       }
+       return values;
     }
 
     public int size() {
