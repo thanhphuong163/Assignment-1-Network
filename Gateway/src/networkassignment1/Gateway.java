@@ -24,7 +24,7 @@ public class Gateway {
     private static Queue<String> DataQueue = new LinkedList<String>();
     private static DatagramSocket ReceiveSocket;
     private static CloudMQTT SendSocket;
-    
+
     //constructor
     public Gateway(int port) throws SocketException{
         //create gateway socket

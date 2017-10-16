@@ -17,7 +17,7 @@ public class QueueRequests {
     }
 
     public Socket pop() {
-        return this.queueRequests.getFirst();
+        return this.queueRequests.removeFirst();
     }
 
     public boolean isFull() {

@@ -10,5 +10,5 @@ package networkassignment1;
  * @author minhh
  */
 public class DatabaseConnection {
-    
+
 }

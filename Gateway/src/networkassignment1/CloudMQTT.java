@@ -37,7 +37,7 @@ public class CloudMQTT {
         String[] auth = getAuth(uri);
         String username = auth[0];
         String password = auth[1];
-        String clientId = "MQTT-Java-Example";
+        String clientId = "MQTT-Java-Example-haocute";
         if (!uri.getPath().isEmpty()) {
             topic = uri.getPath().substring(1);
         }
@@ -66,7 +66,7 @@ public class CloudMQTT {
 
         client.connect(conOpt);
         client.subscribe(topic, qos);
-        
+
     }
 
     private String[] getAuth(URI uri) {

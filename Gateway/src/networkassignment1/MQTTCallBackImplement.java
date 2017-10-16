@@ -27,6 +27,7 @@ public class MQTTCallBackImplement implements MqttCallback{
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         //System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
         this.returnMessage[count++] = new String(message.getPayload());
+
         //System.out.println(returnMessage[count-1]);
         
     }
