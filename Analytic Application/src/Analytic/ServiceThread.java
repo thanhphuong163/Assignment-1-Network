@@ -16,6 +16,8 @@ import static java.lang.System.out;
 
 public class ServiceThread extends Thread{
     private Socket clientSocket;
+    private Query query;
+    private Computing process;
     private MongoCollection collection;
     public ServiceThread(Socket client, MongoCollection collection) {
         this.clientSocket = client;
@@ -35,7 +37,7 @@ public class ServiceThread extends Thread{
             GPS pos = new GPS(ID,Long,Lat,time);
 
             // Query data from Database with info request
-            Query query = new Query(pos, collection);
+            query = new Query(pos, collection);
             ArrayList<GPS> data = query.getData();
 
             // Processing
@@ -44,7 +46,7 @@ public class ServiceThread extends Thread{
                 w = "There is no data in this area.";
             }
             else {
-                Computing process = new Computing(data);
+                process = new Computing(data);
                 w = process.processing();
             }
             out.println("Computed data: " + w);

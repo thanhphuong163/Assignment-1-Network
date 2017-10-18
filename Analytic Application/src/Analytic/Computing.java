@@ -6,6 +6,7 @@ import static java.lang.System.out;
 
 public class Computing {
     private ArrayList<GPS> data;
+    private Dict items;
     private static final Integer EarthR = 6371000; // meters
     // Placeholds
     private static final Double maxMean = 3.;
@@ -45,7 +46,7 @@ public class Computing {
 
     public String processing() {
         String result;
-        Dict items = new Dict();
+        items = new Dict();
         for (int i = 0; i < this.data.size(); i++) {
             items.push(this.data.get(i));
         }

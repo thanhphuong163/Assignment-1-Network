@@ -15,6 +15,7 @@ public class Server {
     private static Database database;
     private static QueueRequests queueRequests;
     private static CloudMQTT cloud;
+    private static ServiceThread process;
 
     public static int numberOfThread = 0;
     public static void main(String[] args) throws InterruptedException, URISyntaxException, MqttException, UnknownHostException {
@@ -45,7 +46,7 @@ public class Server {
                 if (numberOfThread < 10) {
                     numberOfThread++;
                     out.println("Number of Threads: " + numberOfThread);
-                    ServiceThread process = new ServiceThread(queueRequests.pop(), collection);
+                    process = new ServiceThread(queueRequests.pop(), collection);
                     process.run();
                 }
                 out.println("Processing request of " + client.getRemoteSocketAddress().toString() + ".");
