@@ -17,7 +17,7 @@ import static java.lang.System.out;
 public class test {
     private static final String host = "localhost";
     private static final int port = 27017;
-
+    public static int numberOfThread = 0;
     public static void main(String[] args) throws InterruptedException, URISyntaxException, MqttException {
         // Connect to Database
         MongoClient mongo = new MongoClient(host,port);
@@ -28,7 +28,7 @@ public class test {
         URI uri = new URI("http://xvtpdjfm:1VyJas3hrGu9@m10.cloudmqtt.com:15782");
         CloudMQTT s = new CloudMQTT(uri,collection);
         out.println("Connected to Cloud successfully.");
-        int numberOfThread = 0;
+
         try {
             ServerSocket listener = new ServerSocket(9999);
             out.println("Server is listening...");
@@ -39,6 +39,7 @@ public class test {
                 out.println("Push request "+ client.getRemoteSocketAddress().toString() +" into Queue.");
                 if (numberOfThread < 10) {
                     numberOfThread++;
+                    out.println("Number of threads: " + numberOfThread);
                     ServiceThread process = new ServiceThread(queueRequests.pop(), numberOfThread, collection);
                     process.start();
                     out.println("Processing request of " + client.getRemoteSocketAddress().toString() + ".");
