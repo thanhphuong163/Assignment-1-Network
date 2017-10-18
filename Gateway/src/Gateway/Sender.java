@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package networkassignment1;
+package Gateway;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 
