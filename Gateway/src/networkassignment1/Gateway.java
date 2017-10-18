@@ -29,7 +29,6 @@ public class Gateway {
     public Gateway(int port) throws SocketException{
         //create gateway socket
         ReceiveSocket = new DatagramSocket(port);
-        //SendSocket = new DatagramSocket(port);
         //print notification
         System.out.println("Gateway is now ready ...");
     }
@@ -104,8 +103,6 @@ public class Gateway {
                     while(!DataQueue.isEmpty()){
                        dataOut = DataQueue.poll();
                        SendSocket.sendMessage(dataOut);
-                       System.out.println("Data to Cloud: "+dataOut);
-                        System.out.println(DataQueue);
                     }
             } catch (MqttException e) {
                 System.err.println(e);
