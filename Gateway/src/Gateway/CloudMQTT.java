@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package networkassignment1;
+package Gateway;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -24,8 +24,6 @@ public class CloudMQTT {
     private final int qos = 1;
     private String topic = "test";
     private MqttClient client;
-    public static String[] receiveFromCloud = new String[100];
-    public static int count = 0;
 
     public CloudMQTT(String uri) throws MqttException, URISyntaxException {
         this(new URI(uri));
@@ -33,11 +31,11 @@ public class CloudMQTT {
 
     public CloudMQTT(URI uri) throws MqttException {
         String host = String.format("tcp://%s:%d", uri.getHost(), uri.getPort());
-        System.out.println(host);
+        System.out.println("host:" + host);
         String[] auth = getAuth(uri);
         String username = auth[0];
         String password = auth[1];
-        String clientId = "MQTT-Java-Example-haocute";
+        String clientId = "GatewayConnection";
         if (!uri.getPath().isEmpty()) {
             topic = uri.getPath().substring(1);
         }
@@ -56,8 +54,8 @@ public class CloudMQTT {
             public void messageArrived(String topic,
                     MqttMessage message)
                             throws Exception {
-                System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
-                //receiveFromCloud[count++] = new String(message.getPayload());
+                //This line is to print out message from server
+                //System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
             }
             
             @Override
@@ -79,17 +77,10 @@ public class CloudMQTT {
         MqttMessage message = new MqttMessage(payload.getBytes());
         message.setQos(qos);
         client.publish(topic, message); // Blocking publish
-        System.out.println("Sent Message: "+message);
+        System.out.println("Message sent to Cloud: "+message);
     }
 
     public static void main(String[] args) throws MqttException, URISyntaxException, MalformedURLException {
-        //URL url = new URL("xvtpdjfm:1VyJas3hrGu9@http://m10.cloudmqtt.com:15782");
-        //URI uri = url.toURI();
-        //System.out.println(uri);
-        //URI uri = new URI("http://xvtpdjfm:1VyJas3hrGu9@m10.cloudmqtt.com:15782");
-        //CloudMQTT s = new CloudMQTT(uri);
-       
-//        s.sendMessage("Hello");
-//        s.sendMessage("Hello 2");
+        
     }
 }
