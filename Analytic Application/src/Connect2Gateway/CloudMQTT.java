@@ -8,6 +8,7 @@ package Connect2Gateway;
 //import com.mongodb.Mongo;
 import com.mongodb.client.MongoCollection;
 //import jdk.nashorn.internal.parser.JSONParser;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.bson.Document;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
@@ -42,7 +43,7 @@ public class CloudMQTT {
         String[] auth = getAuth(uri);
         String username = auth[0];
         String password = auth[1];
-        String clientId = "MQTT-Java-Example";
+        String clientId = "AnalyticServer";
         if (!uri.getPath().isEmpty()) {
             topic = uri.getPath().substring(1);
         }
@@ -63,15 +64,14 @@ public class CloudMQTT {
                             throws Exception {
                 out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
 
-
-                JSONObject json = new JSONObject(message);
+                JSONObject json = new JSONObject(new String(message.getPayload()));
                 Document doc = new Document()
                         .append("ID", json.getString("ID"))
                         .append("Long", json.getDouble("Long"))
                         .append("Lat", json.getDouble("Lat"))
                         .append("Time", json.getString("Time"));
                 collection.insertOne(doc);
-                out.println("Added successfully.");
+                out.println("Added new data successfully.");
             }
             
             @Override

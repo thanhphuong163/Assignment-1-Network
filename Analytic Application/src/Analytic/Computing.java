@@ -61,7 +61,7 @@ public class Computing {
 //            out.println(v);
             items.setAvgVelocities(i, v);
         }
-//        out.println("There are " + items.size() + " vehicles");
+        out.println("Number of Vehicles: " + items.size());
 //        out.println(items.mean());
 //        out.println(items.variance());
         if (items.mean() <= maxMean && items.variance() <= maxVar) {
@@ -70,7 +70,7 @@ public class Computing {
         else {
             result = "Not jam";
         }
-
+        //out.println(result);
         return result;
     }
 }

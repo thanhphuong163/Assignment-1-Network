@@ -1,5 +1,6 @@
 package Analytic;
 
+import Database.Query;
 import com.mongodb.client.MongoCollection;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,11 +16,9 @@ import static java.lang.System.out;
 
 public class ServiceThread extends Thread{
     private Socket clientSocket;
-    public int numberOfClient;
     private MongoCollection collection;
-    public ServiceThread(Socket client, int n, MongoCollection collection) {
+    public ServiceThread(Socket client, MongoCollection collection) {
         this.clientSocket = client;
-        this.numberOfClient = n;
         this.collection = collection;
     }
     @Override
@@ -38,12 +37,17 @@ public class ServiceThread extends Thread{
             // Query data from Database with info request
             Query query = new Query(pos, collection);
             ArrayList<GPS> data = query.getData();
-//            out.println("Queried data.");
 
             // Processing
-            Computing process = new Computing(data);
-            String w = process.processing();
-//            out.println("Computed data. " + w);
+            String w;
+            if (data.size() <= 0) {
+                w = "There is no data in this area.";
+            }
+            else {
+                Computing process = new Computing(data);
+                w = process.processing();
+            }
+            out.println("Computed data: " + w);
 //            String w = "Hello";
 //            out.println("ID: " + pos.getID());
 //            out.println("Long: " + pos.getLongitude());
@@ -63,6 +67,8 @@ public class ServiceThread extends Thread{
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Server.numberOfThread--;
         out.println("Completed processing for request " + clientSocket.getRemoteSocketAddress());
     }
+
 }
