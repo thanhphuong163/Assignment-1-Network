@@ -32,7 +32,7 @@ public class Gateway {
     public Gateway(int port) throws SocketException{
         //create gateway socket
         ReceiveSocket = new DatagramSocket(port);
-        //print notification
+        // print notification
         System.out.println("Gateway is now ready ...");
     }
     

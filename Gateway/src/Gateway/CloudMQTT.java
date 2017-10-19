@@ -55,7 +55,7 @@ public class CloudMQTT {
                     MqttMessage message)
                             throws Exception {
                 //This line is to print out message from server
-                //System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
+                System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
             }
             
             @Override

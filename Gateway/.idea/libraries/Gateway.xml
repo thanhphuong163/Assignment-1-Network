@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gateway">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Gateway.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
