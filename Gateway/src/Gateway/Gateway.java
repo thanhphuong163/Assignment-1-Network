@@ -27,6 +27,7 @@ public class Gateway {
     static Queue<String> DataQueue = new LinkedList<String>();
     static DatagramSocket ReceiveSocket;
     static CloudMQTT SendSocket;
+    static int port;
 
     //constructor
     public Gateway(int port) throws SocketException{
@@ -45,8 +46,10 @@ public class Gateway {
     public static void main(String[] args) throws SocketException, IOException, URISyntaxException, MqttException {
         // TODO code application logic here
         //create a gateway socket
-        Gateway gateway = new Gateway(1024);
-        System.out.println("Gateway ID >> " + InetAddress.getLocalHost().getHostAddress());
+        port = 1024;
+        Gateway gateway = new Gateway(port);
+        System.out.println("Gateway IP >> " + InetAddress.getLocalHost().getHostAddress());
+        System.out.println("Gateway Port >> 1024");
         URI uri = new URI("http://xvtpdjfm:1VyJas3hrGu9@m10.cloudmqtt.com:15782");
         CloudMQTT SendSocket = new CloudMQTT(uri);
         //run gateway socket
