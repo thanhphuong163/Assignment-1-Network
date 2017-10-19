@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AnalyticApplication:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AnalyticApplication_jar</output-path>
+    <root id="archive" name="Analytic Application.jar">
+      <element id="module-output" name="Analytic Application" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Programming/Library for Java/mongodb-driver-3.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Programming/Library for Java/mongo-java-driver-3.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Programming/Library for Java/org.eclipse.paho.client.mqttv3-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Programming/Library for Java/mongodb-driver-core-3.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Programming/Library for Java/java-json.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
