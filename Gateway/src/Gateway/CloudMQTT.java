@@ -31,7 +31,7 @@ public class CloudMQTT {
 
     public CloudMQTT(URI uri) throws MqttException {
         String host = String.format("tcp://%s:%d", uri.getHost(), uri.getPort());
-        System.out.println("host:" + host);
+        System.out.println("host >> " + host);
         String[] auth = getAuth(uri);
         String username = auth[0];
         String password = auth[1];

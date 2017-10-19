@@ -46,7 +46,7 @@ public class Gateway {
         // TODO code application logic here
         //create a gateway socket
         Gateway gateway = new Gateway(1024);
-        System.out.println(InetAddress.getLocalHost().getHostAddress());
+        System.out.println("Gateway ID >> " + InetAddress.getLocalHost().getHostAddress());
         URI uri = new URI("http://xvtpdjfm:1VyJas3hrGu9@m10.cloudmqtt.com:15782");
         CloudMQTT SendSocket = new CloudMQTT(uri);
         //run gateway socket
