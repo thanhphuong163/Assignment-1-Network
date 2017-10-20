@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TrafficJamPredictor</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="tap_instructions">LocationCoordinates (tap to choose)</string>
+</resources>

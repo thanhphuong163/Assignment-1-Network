@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:background="@color/colorPrimary">
+
+        <EditText
+            android:id="@+id/etLocationEntry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding = "8dp"
+            android:background="@drawable/round"
+            android:layout_weight="4"
+            android:hint = "Enter your place ..."/>
+
+
+        <Button
+            android:id="@+id/btSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Go" />
+
+
+    </LinearLayout>
+
+    <fragment xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll1"
+        tools:context="com.nbstutorials.googelemapstutorial.MapsActivity" />
+
+
+
+    <Button
+        android:id="@+id/btMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#ffffff"
+        android:layout_alignParentRight="true"
+        android:text="Mark" />
+
+    <Button
+        android:id="@+id/btSatellite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#ffffff"
+        android:layout_toLeftOf="@+id/btMark"
+        android:text="Sat" />
+
+        <Button
+            android:id="@+id/btClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:text="Clear"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/btSatellite" />
+
+
+    <Button
+        android:id="@+id/serverSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ffffff"
+        android:text="Server IP"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/btClear" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btDataSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src = "@drawable/send_data"
+        android:theme="@style/MyFloatingButton"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/btSatellite" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btSetTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src = "@drawable/timer_img"
+        android:backgroundTint="#ffffff"
+        app:borderWidth="0dp"
+        android:scaleType="center"
+        android:layout_below="@+id/btDataSend"
+        android:layout_alignLeft="@+id/btDataSend"
+        android:layout_alignStart="@+id/btDataSend"
+        android:layout_marginTop="14dp" />
+
+</RelativeLayout>
